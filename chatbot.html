@@ -41,7 +41,7 @@
         );
       }
       function ChatMessages(){
-         const chatMessages = [{
+        const array = React.useState([{
           message: 'hello chatbot',
           sender: 'user',
           id: 'id1'
@@ -57,27 +57,36 @@
           message: 'Toadys Date is 10/07/2026',
           sender: 'robot',
           id: 'id4'
-        }];
+        }]);
+        const chatMessages = array[0];
+        function sendMessage(){
+          chatMessages.push({
+            message:'test',
+            sender: 'user',
+            id: crypto.randomUUID()
+          });
+          console.log(chatMessages);
+        }
         return (
           <>
-        {chatMessages.map((chatMessage) => {
-          return(
-              <ChatMessage 
-              message = {chatMessage.message}
-              sender = {chatMessage.sender}
-              key = {chatMessage.id}
-              />
-          );
-        })}
+          <button onClick={sendMessage}>Send Message</button>
+          {chatMessages.map((chatMessage) => {
+            return(
+                <ChatMessage 
+                message = {chatMessage.message}
+                sender = {chatMessage.sender}
+                key = {chatMessage.id}
+                />
+            );
+          })}
         </>
-      );
+        );
       }
       function App(){
-        
         return(
         <>
         <ChatInput />
-        <ChatMessage />
+        <ChatMessages />
         </>
         );
       }
