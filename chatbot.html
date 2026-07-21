@@ -14,7 +14,7 @@
     <script type="text/babel">
       function ChatInput(){
         function saveInputText(event){
-          event.target
+          console.log(event.target.value);
         }
         return(
           <>
@@ -45,6 +45,7 @@
         );
       }
       function ChatMessages(){
+        const [inputText, setInputText] = React.useState('');
         const [chatMessages, setChatMessages] = React.useState([{
           message: 'hello chatbot',
           sender: 'user',
