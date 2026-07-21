@@ -13,9 +13,13 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput(){
+        function saveInputText(event){
+          event.target
+        }
         return(
           <>
-        <input placeholder = "Send a Message to the ChatBot" size = "30"/>
+        <input placeholder = "Send a Message to the ChatBot" size = "30"
+        onChange = {saveInputText}/>
         <button>Send</button>
         </>
       );
