@@ -13,14 +13,18 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput(){
+        const [inputText, setInputText] = React.useState();
         function saveInputText(event){
-          console.log(event.target.value);
+          setInputText(event.target.value);
+        }
+        function sendMessage(){
+          console.log(inputText);
         }
         return(
           <>
         <input placeholder = "Send a Message to the ChatBot" size = "30"
         onChange = {saveInputText}/>
-        <button>Send</button>
+        <button onClick = {sendMessage}>Send</button>
         </>
       );
       }
