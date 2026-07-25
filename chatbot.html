@@ -9,11 +9,12 @@
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="file:///C:/Users/kidbo/Documents/React/chatbot.html"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput({chatMessages, setChatMessages}){
-        const [inputText, setInputText] = React.useState();
+        const [inputText, setInputText] = React.useState('');
         function saveInputText(event){
           setInputText(event.target.value);
         }
@@ -21,16 +22,19 @@
          setChatMessages([
           ...chatMessages,
           {
-            message: 'test',
+            message: inputText,
             sender: 'user',
             id: crypto.randomUUID()
           }
          ]);
+         setInputText('');
         }
         return(
           <>
         <input placeholder = "Send a Message to the ChatBot" size = "30"
-        onChange = {saveInputText}/>
+        onChange = {saveInputText}
+        value = {inputText}/>
+        <button onClick = {sendMessage}>Send</button>
         </>
       );
       }
@@ -54,11 +58,10 @@
           </div>
         );
       }
-      function ChatMessages(){
+      function ChatMessages({chatMessages}){
         return (
           <>
-          <button onClick={sendMessage}>Send Message</button>
-          {chatMessages.map((chatMessage) => {
+            {chatMessages.map((chatMessage) => {
             return(
                 <ChatMessage 
                 message = {chatMessage.message}
