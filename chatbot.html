@@ -2,6 +2,11 @@
 <html>
   <head>
     <title>ChatBot</title>
+    <style>
+      .send-button{
+        background: green;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -42,7 +47,9 @@
         <input placeholder = "Send a Message to the ChatBot" size = "30"
         onChange = {saveInputText}
         value = {inputText}/>
-        <button onClick = {sendMessage}>Send</button>
+        <button onClick = {sendMessage}
+        className = "send-button"
+        >Send</button>
         </>
       );
       }
