@@ -63,6 +63,7 @@
       flex-grow:1;
       margin-top:20px;
       overflow:scroll;
+      scrollbar-width: none;
       }
     </style>
   </head>
@@ -139,6 +140,9 @@
         );
       }
       function ChatMessages({chatMessages}){
+        React.useEffect(() => {
+          console.log('updated');
+        });
         return (
           <div className = "chat-messages-container">
             {chatMessages.map((chatMessage) => {
