@@ -3,6 +3,9 @@
   <head>
     <title>ChatBot</title>
     <style>
+      body{
+        font-family: Arial;
+      }
       .send-button{
         background: rgb(25,135,84);
         color:white;
@@ -18,6 +21,27 @@
         border-radius: 10px;
         border-width: 1px;
         font-size:15px;
+        flex-grow: 1;
+      }
+      .chat-input-container{
+        display:flex;
+      }
+      .app-container{
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .chat-message-user{
+        display:flex;
+        justify-content:end;
+      }
+      .chat-message-robot{
+        display:flex;
+      }
+      .chat-message-text{
+        background-color: rgb(238,238,238);
+        font-size:15px;
+        font-family: Arial;
       }
     </style>
   </head>
@@ -56,7 +80,7 @@
          setInputText('');
         }
         return(
-          <>
+          <div className = "chat-input-container">
         <input placeholder = "Send a Message to the ChatBot" size = "30"
         onChange = {saveInputText}
         value = {inputText}
@@ -64,7 +88,7 @@
         <button onClick = {sendMessage}
         className = "send-button"
         >Send</button>
-        </>
+        </div>
       );
       }
       function ChatMessage({ message, sender }){
@@ -80,9 +104,15 @@
         //   );
         // }
         return (
-          <div>
+          <div className = {
+            sender === 'user'
+            ? 'chat-message-user'
+             : 'chat-message-robot'
+            }>
             {sender === 'robot' && <img src = "robot.png" width = "50"/>}
+            <div className ='chat-message-text'>
             {message}
+            </div>
             {sender === 'user' && <img src = "user.png" width = "50"/>}
           </div>
         );
@@ -117,7 +147,7 @@
           sender: 'user',
           id: 'id3'
         }, {
-          message: 'Toadys Date is 10/07/2026',
+          message: 'Today Date is 10/07/2026',
           sender: 'robot',
           id: 'id4'
         }]);
@@ -126,14 +156,14 @@
         // const setChatMessages = array[1];
 
         return(
-        <>
+        <div className = "app-container">
         <ChatInput 
         chatMessages = {chatMessages}
         setChatMessages = {setChatMessages}/>
         <ChatMessages 
         chatMessages = {chatMessages}
         setChatMessages = {setChatMessages}/>
-        </>
+        </div>
         );
       }
       const container = document.querySelector('.js-container');
